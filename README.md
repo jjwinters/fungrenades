@@ -9,7 +9,8 @@ I'm posting this because I'm not sure how much time I'll have for Bukkit and
 Minecraft in the near future, so please feel free to add and improve if it falls
 behind. Please cite me as the original author, and avenge me!
 
-................................................................................
+
+
 If I had done this correctly from the start, there would be an actual Grenade 
 class which would make the code and configs a bit neater. The first version 
 added to this repository is v2.2; I did some refactoring to make it a little 
