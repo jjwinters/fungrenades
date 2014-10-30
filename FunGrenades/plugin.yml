@@ -1,0 +1,72 @@
+name: FunGrenades
+main: com.gmail.wintersj7.fungrenades.FunGrenades
+version: 2.2
+author: Waffles87
+description: Throw some unique and fun grenades!
+permissions:
+    fg.*:
+        description: Gives access to FunGrenades features except admin commands.
+        children:
+            fg.classic: true
+            fg.smokebomb: true
+            fg.gluebomb: true
+            fg.pineapple: true
+            fg.icicle: true
+            fg.teardrop: true
+            fg.napalm: true
+            fg.jackhammer: true
+            fg.zapper: true
+            fg.pester: true
+            fg.decay: true
+            fg.acme: true
+    fg.give:
+        description: Allows a player to use the fg.give command.
+        default: op      
+    fg.reload:
+        description: Allows a player to use the fg.reload command.
+        default: op       
+    fg.classic:
+        description: Allows a player to get and throw classic HE bombs.
+        default: true        
+    fg.smokebomb: 
+        description: Allows a player to get and throw smoke bombs.
+        default: true
+    fg.gluebomb:
+        description: Allows a player to get and throw glue bombs.
+        default: true        
+    fg.pineapple: 
+        description: Allows a player to get and throw pineapples.
+        default: true
+    fg.icicle:
+        description: Allows a player to get and throw icicles.
+        default: true        
+    fg.teardrop: 
+        description: Allows a player to get and throw teardrops.
+        default: true
+    fg.napalm:
+        description: Allows a player to get and throw napalm bombs.
+        default: true        
+    fg.jackhammer: 
+        description: Allows a player to get and throw jackhammers.
+        default: true
+    fg.pester:
+        description: Allows a player to get and throw pester bombs.
+        default: true
+    fg.zapper:
+        description: Allows a player to get and throw zappers.
+        default: true
+    fg.decay:
+        description: Allows a player to get and throw death and decay.
+        default: true
+    fg.acme:
+        description: Allows a player to get and throw ACME holes.
+        default: true
+commands:
+   fg.give:
+      description: Gives a player grenades, used just like the /give command
+      usage: /<command> player type amount
+   fg.reload:
+      description: Reloads the FunGrenades configs.
+      usage: /<command> 
+   
+

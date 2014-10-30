@@ -1,0 +1,190 @@
+
+### FunGrenades Configs
+# Notes: 
+# All of the values specifying time are in ticks, unless stated to be seconds.
+# 20 ticks is about 1 second.
+
+
+### GENERAL
+#
+# Ticks all players must wait before throwing another grenade.
+throw_cooldown: 20
+
+# Enable items to be renamed into FunGrenades; useful for adding grenades to kits, 
+# but makes it possible for people to 'illegitimately' obtain grenades with an anvil.
+renaming_allowed: false
+
+# Global switch for allowing crafting of FunGrenades.
+# With this set to false, all the recipe configs below are useless.
+allow_crafting: true
+
+# Materials that will NOT trigger a grenade to be thrown when right-clicked.
+# (Should be the same as when throwing a snowball, but in case I missed any, you can 
+# edit the list here)
+right_click_safe_materials:
+  - WOOD_DOOR
+  - WOODEN_DOOR
+  - IRON_DOOR
+  - IRON_DOOR_BLOCK
+  - TRAP_DOOR
+  - CHEST
+  - ENDER_CHEST
+  - WORKBENCH
+  - FURNACE
+  - ANVIL
+  - ENCHANTMENT_TABLE
+  - BREWING_STAND
+  - STONE_BUTTON
+  - WOOD_BUTTON
+  - LEVER
+  - FENCE_GATE
+
+### HE (Classic) Grenade
+detonation_time_he: 30
+explosion_strength_he: 4
+causes_fire_he: false
+block_destruction_he: true
+classic:
+  recipe:
+    - BXB
+    - XAX
+    - BXB
+  materials:
+    A: TNT
+    B: CLAY_BALL
+
+### Smoke Bomb
+detonation_time_smoke: 20
+duration_seconds_smoke: 20
+smokebomb:
+  recipe:
+    - BCB
+    - XAX
+    - BXB
+  materials:
+    A: TORCH
+    B: CLAY_BALL
+    C: COAL
+
+### Glue Bomb
+detonation_time_glue: 30
+duration_seconds_glue: 20
+gluebomb:
+  recipe:
+    - BXB
+    - XAX
+    - BXB
+  materials:
+    A: BONE
+    B: STRING
+
+### Pineapple
+detonation_time_pineapple: 30
+explosion_strength_pineapple: 1
+causes_fire_pineapple: false
+block_destruction_pineapple: true
+pineapple:
+  recipe:
+    - BXB
+    - XAX
+    - BXB
+  materials:
+    A: TNT
+    B: ARROW
+
+### Napalm
+detonation_time_napalm: 30
+napalm:
+  recipe:
+    - BXB
+    - XAX
+    - BXB
+  materials:
+    A: LAVA_BUCKET
+    B: BLAZE_POWDER
+
+### Teardrop
+detonation_time_teardrop: 30
+teardrop:
+  recipe:
+    - BXB
+    - XAX
+    - BXB
+  materials:
+    A: WATER_BUCKET
+    B: SLIME_BALL
+
+### Icicle
+detonation_time_icicle: 30
+icicle:
+  recipe:
+    - BXB
+    - XAX
+    - BXB
+  materials:
+    A: DIAMOND
+    B: SNOW_BALL
+
+### Jackhammer
+detonation_time_jack: 30
+causes_fire_jack: false
+jackhammer:
+  recipe:
+    - XCX
+    - XAX
+    - XBX
+  materials:
+    A: TNT
+    B: TRAP_DOOR
+    C: FLINT
+
+### Pester
+detonation_time_pester: 30
+max_bat_duration: 220
+pester:
+  recipe:
+    - BXB
+    - XAX
+    - BXB
+  materials:
+    A: BONE
+    B: LEATHER
+
+### Zapper
+detonation_time_zapper: 30
+zap_propegation: 50
+zap_damage: 8
+zapper:
+  recipe:
+    - BXB
+    - XAX
+    - BXB
+  materials:
+    A: REDSTONE
+    B: GOLD_NUGGET
+
+### Decay
+detonation_time_decay: 30
+duration_seconds_decay: 20
+decay_damage: 2
+decay:
+  recipe:
+    - BXB
+    - XAX
+    - BXB
+  materials:
+    A: ROTTEN_FLESH
+    B: BROWN_MUSHROOM
+
+### Acme Hole
+duration_seconds_acme: 8
+acme_hole_depth: 8
+acme:
+  recipe:
+    - BXB
+    - XAX
+    - BXB
+  materials:
+    A: ENDER_PEARL
+    B: COAL
+
