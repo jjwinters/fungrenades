@@ -366,26 +366,32 @@ public class FunGrenades extends JavaPlugin {
 		ConfigurationSection section;
 		ConfigurationSection mSection;
         
-		Iterator<String> git = grenadeRecipes.keySet().iterator();
-		while (git.hasNext()) {
-			String g = git.next();
-			ShapedRecipe r = (ShapedRecipe) grenadeRecipes.get(g);
-			section = this.getConfig().getConfigurationSection(g);
-        	mSection = section.getConfigurationSection("materials");
-        	materials = mSection.getValues(false);
-        	shape = section.getStringList("recipe");
-            r.shape(shape.toArray(new String[0]));
-        	
-        	materialKeys = materials.keySet();
-        	Iterator<String> it = materialKeys.iterator();
-        	while (it.hasNext()) {
-        		String key = it.next();
-        		String ingredient = (String) materials.get(key);
-        		Material m = Material.valueOf(ingredient);
-        		r.setIngredient(key.charAt(0), m);
-        	}
-        	getServer().addRecipe(r);
-        	//System.out.println("Added recipe for " + g);
+		if (this.getConfig().getBoolean("allow_crafting")){
+			Iterator<String> git = grenadeRecipes.keySet().iterator();
+			while (git.hasNext()) {
+				String g = git.next();
+				ShapedRecipe r = (ShapedRecipe) grenadeRecipes.get(g);
+				section = this.getConfig().getConfigurationSection(g);
+				mSection = section.getConfigurationSection("materials");
+				materials = mSection.getValues(false);
+				shape = section.getStringList("recipe");
+				r.shape(shape.toArray(new String[0]));
+				
+				materialKeys = materials.keySet();
+				Iterator<String> it = materialKeys.iterator();
+				while (it.hasNext()) {
+					String key = it.next();
+					String ingredient = (String) materials.get(key);
+					Material m = Material.valueOf(ingredient);
+					r.setIngredient(key.charAt(0), m);
+				}	
+				getServer().addRecipe(r);
+			}
+			
+			System.out.println("FunGrenades configs reloaded with crafting recipes enabled.");
+		}
+		else {
+			System.out.println("FunGrenades configs reloaded with crafting recipes disabled.");
 		}
 	}
 	
@@ -403,17 +409,25 @@ public class FunGrenades extends JavaPlugin {
 					Recipe r = recipeIterator.next();
 					
 					Iterator<String> git = grenadeRecipes.keySet().iterator();
+					boolean isFunGrenade = false;
+					
 					while (git.hasNext()){
+						
 						String name = grenadeRecipes.get(git.next()).getResult().getItemMeta().getDisplayName();
 					
 						if ((r.getResult().hasItemMeta()) &&
 							(r.getResult().getItemMeta().hasDisplayName()) &&
 						 	(r.getResult().getItemMeta().getDisplayName().equals(name)))
 						{
-							System.out.println("Ommitted " + name + " from saved server recipes.");
+							//System.out.println("Ommitted " + name + " from saved server recipes.");
+							isFunGrenade = true;
 						}
-						else
-							savedRecipes.add(r);
+					}
+					
+					if (!isFunGrenade) {
+						savedRecipes.add(r);
+						//if (r.getResult().hasItemMeta() && r.getResult().getItemMeta().hasDisplayName())
+							//System.out.println("Saved a recipe: " + r.getResult().getItemMeta().getDisplayName());
 					}
 				}
 				
@@ -423,13 +437,15 @@ public class FunGrenades extends JavaPlugin {
 				while (rit.hasNext()){
 					Recipe r = rit.next();
 					this.getServer().addRecipe(r);
+					//if (r.getResult().hasItemMeta() && r.getResult().getItemMeta().hasDisplayName())
+						//System.out.println("Recipe Added to Server: " + r.getResult().getItemMeta().getDisplayName());
 				}
 				
 				// the updated ones from FunGrenades should be added in reloadRecipes()
 				//reloadRecipes();
 				onEnable();
 				
-				System.out.println("Reloaded FunGrenades configs and crafting recipes.");
+				//System.out.println("Reloaded FunGrenades configs and crafting recipes.");
 				if (sender instanceof Player){
 					sender.sendMessage("Reloaded FunGrenades configs and crafting recipes.");
 				}
@@ -1952,17 +1968,21 @@ public class FunGrenades extends JavaPlugin {
 	    	Player player = (Player)evt.getWhoClicked();
 	    	ItemStack result = evt.getRecipe().getResult();
 	    	
-	    	if (!fungrenades.getConfig().getBoolean("allow_crafting")){
+	    	// Moved 'allow_crafting' check to crafting recipe reload method.
+	    	/*if (!fungrenades.getConfig().getBoolean("allow_crafting")){
 	    		Iterator<String> rip = fungrenades.grenadeRecipes.keySet().iterator();
 	    		while (rip.hasNext()){
 	    			String key = rip.next();
-	    			if (fungrenades.grenadeRecipes.get(key).equals(evt.getRecipe())){
+	    			if (fungrenades.grenadeRecipes.get(key).getResult().equals(evt.getRecipe().getResult())){
 	    				player.sendMessage("Crafting of FunGrenades is disabled.");
 	    				evt.setCancelled(true);
 	    				return;
 	    			}
+	    			else {
+	    				System.out.println("Recipe: " + evt.getRecipe().getResult().toString());
+	    			}
 	    		}
-	    	}
+	    	}*/
 	    	
 	    	// Check permission for fungrenade crafting
 	    	if (result.hasItemMeta() && result.getItemMeta().hasDisplayName()){
